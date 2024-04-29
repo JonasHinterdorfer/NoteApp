@@ -1,0 +1,18 @@
+{
+  "name": "noteapplication",
+  "version": "1.0.0",
+  "description": "The perfect Note taking platform",
+  "main": "index.js",
+  "scripts": {
+    "run": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "gitrepo"
+  },
+  "author": "ionas999",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.1"
+  }
+}
