@@ -1,15 +1,40 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron/main')
 
-const createWindow = async () => {
+const createWindow = () => {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600
+        width: 500,
+        height: 500,
+        webPreferences: {
+            nodeIntegration: true
+        }
     })
-
-    await win.loadFile('index.html')
+    win.loadFile('index.html').then()
+    win.setMenuBarVisibility(false)
+    win.setTitle('Electron App')
 }
+const path = require('path');
+require('electron-reload')(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+});
+
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+  hardResetMethod: 'exit'
+});
 
 app.whenReady().then(() => {
-    createWindow().then(_ => console.log('Window created'))
+    createWindow()
+
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0) {
+            createWindow()
+        }
+
+    })
 })
 
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})

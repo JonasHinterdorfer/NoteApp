@@ -13,6 +13,7 @@
   "author": "ionas999",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^30.0.1"
+    "electron": "^30.0.1",
+    "electron-reload": "^2.0.0-alpha.1"
   }
 }
